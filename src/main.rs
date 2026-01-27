@@ -8,9 +8,13 @@ fn main() {
     let r3 = &mut s;
     println!("r3 = {r3}");
 
-    let s = String::from("Yoyi Guiller");
+    let s = String::from("Yoyi Guille");
     let w = first_word(&s);
     println!("first word = {w}");
+
+    println!("w -> {w}");
+    let p = second_word(&s);
+    println!("second word = {p}");
 }
 
 fn first_word(s: &str) -> &str {
@@ -19,6 +23,18 @@ fn first_word(s: &str) -> &str {
     for (i, &item) in bytes.iter().enumerate() {
         if item == b' ' {
             return &s[..i];
+        }
+    }
+
+    &s[..]
+}
+
+fn second_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[i + 1..];
         }
     }
 
