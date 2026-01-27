@@ -15,7 +15,7 @@ xcode-select --install
 Use Homebrew to install Rust. But install rustup first. Then run `rustup-init` to install Rust, as well as the Rust toolchain, which includes the package manager `cargo`.
 
 ```
-brew install rustup-init
+brew install rustup
 rustup-init
 ```
 
