@@ -1,42 +1,44 @@
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    fn contains(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
+
+    fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
+    }
+}
+
 fn main() {
-    let mut s = String::from("Hi");
-    let r1 = &s;
-    let r2 = &s;
-    println!("r1 = {r1} / r2 = {r2}");
-    println!("again, r1 = {r1}");
+    let r1 = Rectangle {
+        width: 23,
+        height: 45,
+    };
 
-    let r3 = &mut s;
-    println!("r3 = {r3}");
+    let r2 = Rectangle {
+        width: 10,
+        height: 20,
+    };
 
-    let s = String::from("Yoyi Guille");
-    let w = first_word(&s);
-    println!("first word = {w}");
+    let r3 = Rectangle::square(50);
 
-    println!("w -> {w}");
-    let p = second_word(&s);
-    println!("second word = {p}");
-}
+    let a = r1.area();
+    println!("Area of rectangle r1 is {a}");
+    println!("r1 -> {r1:?}");
 
-fn first_word(s: &str) -> &str {
-    let bytes = s.as_bytes();
-
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return &s[..i];
-        }
-    }
-
-    &s[..]
-}
-
-fn second_word(s: &str) -> &str {
-    let bytes = s.as_bytes();
-
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return &s[i + 1..];
-        }
-    }
-
-    &s[..]
+    println!("r2 contains r1? -> {}", r2.contains(&r1));
+    println!("r1 contains r2? -> {}", r1.contains(&r2));
+    println!("r1 contains r3? -> {}", r1.contains(&r3));
 }
